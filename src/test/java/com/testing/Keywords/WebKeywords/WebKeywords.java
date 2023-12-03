@@ -1,6 +1,6 @@
-package Keywords.WebKeywords;
+package com.testing.Keywords.WebKeywords;
 
-import Steps.WebSteps.WebSteps;
+import com.testing.Steps.WebSteps.WebSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 

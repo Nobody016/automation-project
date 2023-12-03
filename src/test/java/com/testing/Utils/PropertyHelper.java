@@ -1,4 +1,4 @@
-package Utils;
+package com.testing.Utils;
 
 import net.serenitybdd.model.environment.EnvironmentSpecificConfiguration;
 import net.thucydides.model.environment.SystemEnvironmentVariables;
