@@ -1,6 +1,6 @@
-package Pages;
+package com.testing.Pages;
 
-import WebDriver.WebDriverManager;
+import com.testing.Config.WebDriverManager;
 import lombok.SneakyThrows;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;

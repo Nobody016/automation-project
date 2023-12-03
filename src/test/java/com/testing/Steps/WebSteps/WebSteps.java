@@ -1,6 +1,6 @@
-package Steps.WebSteps;
+package com.testing.Steps.WebSteps;
 
-import Pages.WebPage;
+import com.testing.Pages.WebPage;
 import net.serenitybdd.annotations.Step;
 
 public class WebSteps {
@@ -10,6 +10,7 @@ public class WebSteps {
     public void navigateToUrl(String url) {
         webPage.navigateToUrl(url);
     }
+
     @Step
     public void waitForTimeInSeconds(String seconds) {
         webPage.wait(seconds);
