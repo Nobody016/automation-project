@@ -16,7 +16,7 @@ public class Hooks {
     @After(order = 1)
     public void afterScenario() {
         System.out.println("After Scenario");
-        webDriverManager.closeDriver();
+        WebDriverManager.closeDriver();
     }
 
 

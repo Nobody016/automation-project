@@ -2,7 +2,10 @@ package com.testing.Pages;
 
 import com.testing.Config.WebDriverManager;
 import lombok.SneakyThrows;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,4 +32,29 @@ public class WebPage {
             log.error("Wait was interrupted", e);
         }
     }
+
+    public void clickOnWebElement(String locator) {
+        WebElement element = getWebElement(locator);
+        element.click();
+    }
+
+    public WebElement getWebElement(String locator) {
+        WebElement element;
+        WebDriver driver = getDriver;
+
+        if (locator.startsWith("//")) {
+            element = driver.findElement(By.xpath(locator));
+        } else {
+            locator = locator.replace("css:", "");
+            element = driver.findElement(By.cssSelector(locator));
+        }
+        // Scroll element in to view using JavaScript.
+        JavascriptExecutor je = (JavascriptExecutor) getDriver;
+        je.executeScript("arguments[0].scrollIntoView(true);", element);
+
+
+        return element;
+    }
+
+
 }
