@@ -1,12 +1,12 @@
 package com.testing.Config;
 
-import com.testing.Utils.PropertyHelper;
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 import static com.testing.Utils.PropertyHelper.getSerenityProperty;
 
@@ -38,10 +38,23 @@ public class WebDriverManager {
 
     public static void closeDriver() {
         if (driver != null) {
-            driver.quit();
-            driver = null; // Set driver to null after closing
+            try {
+                driver.quit();
+            } catch (Exception e) {
+                log.error("Error occurred while closing the driver: " + e.getMessage(), e);
+            } finally {
+                driver = null; // Ensure driver is set to null regardless
+            }
         }
     }
+    public static void killDriverProcesses() {
+        try {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+        } catch (IOException e) {
+            log.error("Error occurred while killing the driver processes: " + e.getMessage(), e);
+        }
+    }
+
     /**
      * Determines whether the driver is set to run in headless mode based on the 'chrome.switches' property.
      * Returns true if 'chrome.switches' explicitly indicates headless mode, false otherwise.

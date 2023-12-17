@@ -9,12 +9,16 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
+import static com.testing.Config.WebDriverManager.getDriver;
+
 
 public class WebPage {
 
     private static final Logger log = LoggerFactory.getLogger(WebPage.class);
     WebDriverManager webDriverManager = new WebDriverManager();
-    WebDriver getDriver = webDriverManager.getDriver();
+    WebDriver getDriver = getDriver();
 
     public void navigateToUrl(String url) {
         getDriver.navigate().to(url);
@@ -37,6 +41,11 @@ public class WebPage {
         WebElement element = getWebElement(locator);
         element.click();
     }
+    public void clickObjectWithJavaScript(String locator) {
+        WebElement ele = getWebElement(locator);
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", ele);
+    }
 
     public WebElement getWebElement(String locator) {
         WebElement element;
@@ -56,5 +65,16 @@ public class WebPage {
         return element;
     }
 
+    public List<WebElement> getIFramesList() {
+        return getDriver().findElements(By.xpath("//iframe"));
+    }
+
+    public void switchFrame(WebElement webElem) {
+        getDriver().switchTo().frame(webElem);
+    }
+
+    public void switchBackFromFrame() {
+        getDriver().switchTo().defaultContent();
+    }
 
 }
