@@ -3,10 +3,13 @@ package com.testing.Keywords.WebKeywords;
 import com.testing.Steps.WebSteps.WebSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import net.serenitybdd.annotations.Steps;
 
 public class WebKeywords {
 
-    WebSteps webSteps = new WebSteps();
+    @Steps
+    private final WebSteps webSteps = new WebSteps();
 
 
     @Given("Navigate to url {string}")
@@ -18,4 +21,16 @@ public class WebKeywords {
     public void waitForTimeInSeconds(String seconds) {
         webSteps.waitForTimeInSeconds(seconds);
     }
+
+    @And("Click on web object {string}")
+    public void clickOnWebElement(String locator) {
+        webSteps.clickOnWebElement(locator);
+    }
+
+    @When("Clicks on web object {string} using JavaScript")
+    public void clicksOnObjectIdObjectUsingJavaScript(String locator) {
+        webSteps.clickObjectWithJavaScript(locator);
+    }
+
+
 }

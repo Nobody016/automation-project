@@ -10,6 +10,9 @@ public class PropertyHelper {
         return getSerenityProperty("browser.resolution");
     }
 
+    private PropertyHelper() {
+        throw new IllegalStateException("Utility class");
+    }
     public static String getSerenityProperty(String propertyName) {
         EnvironmentVariables variables = SystemEnvironmentVariables.createEnvironmentVariables();
         return EnvironmentSpecificConfiguration.from(variables).getProperty(propertyName);

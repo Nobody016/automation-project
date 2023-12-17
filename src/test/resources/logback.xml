@@ -7,6 +7,10 @@
         </encoder>
     </appender>
 
+    <logger name="net.thucydides" level="WARN"/>
+    <logger name="com.testing" level="${log.level}"/>
+    <logger name="net.serenitybdd" level="${log.level}"/>
+
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
